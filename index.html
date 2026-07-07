@@ -3,47 +3,110 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Julia's ILTC Apps</title>
-<meta name="description" content="Every app Julia made at ILTC — click a folder to open the live app." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📁</text></svg>" />
+<title>Julia's ILTC Apps ★</title>
+<meta name="description" content="Every app Julia made at ILTC — click a sticker to open the live app." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛹</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg1: #1b2340;
-    --bg2: #3a2a5e;
-    --card: rgba(255, 255, 255, 0.07);
-    --card-hover: rgba(255, 255, 255, 0.14);
-    --text: #f4f2ff;
-    --muted: #b9b3d9;
-    --accent: #ffd166;
+    --pink: #ff2d87;
+    --pink-hot: #ff0f6e;
+    --pink-soft: #ffb3d1;
+    --cream: #fff5ec;
+    --ink: #141414;
+    --lime: #c7f458;
+    --sky: #7dd6ff;
+    --lilac: #cdb4ff;
+    --sun: #ffd166;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: linear-gradient(160deg, var(--bg1), var(--bg2));
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 48px 20px 64px;
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.22) 0 2px, transparent 3px),
+      radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.18) 0 2px, transparent 3px),
+      linear-gradient(165deg, var(--pink-hot) 0%, var(--pink) 55%, #ff5aa1 100%);
+    background-size: 340px 340px, 260px 260px, cover;
+    overflow-x: hidden;
   }
-  header { text-align: center; margin-bottom: 40px; }
-  header h1 {
-    font-size: clamp(1.9rem, 5vw, 2.8rem);
-    letter-spacing: -0.02em;
+
+  /* ── marquee ── */
+  .marquee {
+    background: var(--ink);
+    color: var(--cream);
+    border-bottom: 3px solid var(--ink);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 9px 0;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    text-transform: uppercase;
   }
-  header h1 .spark { color: var(--accent); }
-  header p {
-    margin-top: 10px;
-    color: var(--muted);
-    font-size: 1.05rem;
+  .marquee span {
+    display: inline-block;
+    animation: scroll 22s linear infinite;
   }
+  .marquee em { color: var(--pink-soft); font-style: normal; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── header ── */
+  header {
+    text-align: center;
+    padding: 56px 20px 18px;
+    position: relative;
+  }
+  h1 {
+    font-family: "Shrikhand", cursive;
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    line-height: 1.02;
+    color: var(--cream);
+    text-shadow: 4px 4px 0 var(--ink);
+    transform: rotate(-2deg);
+    -webkit-text-stroke: 2px var(--ink);
+  }
+  h1 .tilt { display: inline-block; transform: rotate(4deg) translateY(-6px); color: var(--sun); }
+  .subtitle {
+    display: inline-block;
+    margin-top: 22px;
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    box-shadow: 4px 4px 0 var(--ink);
+    padding: 8px 22px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transform: rotate(1.2deg);
+  }
+  .subtitle code { font-family: inherit; color: var(--pink-hot); }
+
+  /* ── floating doodles ── */
+  .doodle {
+    position: absolute;
+    font-size: 2rem;
+    pointer-events: none;
+    animation: bob 4s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.35));
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(var(--r, -8deg)); }
+    50% { transform: translateY(-12px) rotate(var(--r, -8deg)); }
+  }
+
+  /* ── grid of stickers ── */
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 26px;
     width: 100%;
-    max-width: 1020px;
+    max-width: 1060px;
+    margin: 42px auto 0;
+    padding: 0 22px;
   }
   .folder {
     position: relative;
@@ -52,73 +115,129 @@
     align-items: center;
     text-align: center;
     text-decoration: none;
-    color: var(--text);
-    background: var(--card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 18px;
-    padding: 26px 18px 20px;
-    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    color: var(--ink);
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 30px 18px 22px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
+  /* messy-on-purpose tilts */
+  .folder:nth-child(8n+1) { transform: rotate(-1.6deg); }
+  .folder:nth-child(8n+2) { transform: rotate(1.8deg); background: var(--lime); }
+  .folder:nth-child(8n+3) { transform: rotate(-0.8deg); background: var(--sky); }
+  .folder:nth-child(8n+4) { transform: rotate(2.1deg); }
+  .folder:nth-child(8n+5) { transform: rotate(-2.2deg); background: var(--lilac); }
+  .folder:nth-child(8n+6) { transform: rotate(1.1deg); background: var(--sun); }
+  .folder:nth-child(8n+7) { transform: rotate(-1.2deg); background: var(--pink-soft); }
+  .folder:nth-child(8n+8) { transform: rotate(1.6deg); }
   .folder:hover {
-    transform: translateY(-4px);
-    background: var(--card-hover);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    transform: rotate(0deg) translate(-3px, -5px) scale(1.03);
+    box-shadow: 11px 12px 0 var(--ink);
+    z-index: 2;
   }
   .folder .icon {
-    font-size: 52px;
+    font-size: 54px;
     line-height: 1;
     margin-bottom: 12px;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     transition: transform 0.18s ease;
   }
-  .folder:hover .icon { transform: scale(1.12) rotate(-3deg); }
+  .folder:hover .icon { transform: scale(1.18) rotate(-8deg); }
   .folder .name {
-    font-weight: 700;
-    font-size: 1.05rem;
-    margin-bottom: 6px;
+    font-family: "Shrikhand", cursive;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    line-height: 1.15;
   }
   .folder .desc {
-    color: var(--muted);
     font-size: 0.85rem;
-    line-height: 1.4;
-    min-height: 2.4em;
+    font-weight: 500;
+    line-height: 1.45;
+    min-height: 2.5em;
+    max-width: 26ch;
   }
   .folder .open {
-    margin-top: 14px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-  .code-link {
-    position: absolute;
-    top: 10px;
-    right: 12px;
+    margin-top: 16px;
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--muted);
-    text-decoration: none;
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    padding: 4px 8px;
-    transition: color 0.15s ease, background 0.15s ease;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 999px;
+    padding: 6px 16px;
+    transition: background 0.15s ease, color 0.15s ease;
   }
-  .code-link:hover { color: var(--accent); background: rgba(0, 0, 0, 0.45); }
+  .folder:hover .open { background: var(--pink-hot); }
+  .code-link {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--cream);
+    text-decoration: none;
+    background: var(--ink);
+    border: 2px solid var(--cream);
+    border-radius: 999px;
+    padding: 5px 10px;
+    transform: rotate(8deg);
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .code-link:hover { background: var(--pink-hot); transform: rotate(0deg) scale(1.1); }
+
+  /* ── footer ── */
   footer {
-    margin-top: 48px;
-    color: var(--muted);
-    font-size: 0.85rem;
+    margin-top: 64px;
     text-align: center;
   }
-  footer a { color: var(--accent); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
+  .checker {
+    height: 26px;
+    background:
+      repeating-conic-gradient(var(--ink) 0% 25%, var(--cream) 0% 50%)
+      0 0 / 26px 26px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+  .footer-inner {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 26px 20px 34px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .footer-inner a {
+    color: var(--pink-soft);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .footer-inner a:hover { color: var(--lime); }
+  .footer-inner .board { font-size: 1.4rem; display: block; margin-bottom: 8px; }
+
+  @media (max-width: 520px) {
+    .doodle { font-size: 1.4rem; }
+    .grid { gap: 22px; }
+  }
 </style>
 </head>
 <body>
+
+<div class="marquee" aria-hidden="true">
+  <span>
+    ★ JULIA'S ILTC APPS <em>✦</em> HOT &amp; FRESH <em>✦</em> CLICK A STICKER <em>✦</em> NO SKATING IN THE HALLWAYS <em>✦</em> MADE WITH LOVE @ ILTC <em>✦</em>&nbsp;
+    ★ JULIA'S ILTC APPS <em>✦</em> HOT &amp; FRESH <em>✦</em> CLICK A STICKER <em>✦</em> NO SKATING IN THE HALLWAYS <em>✦</em> MADE WITH LOVE @ ILTC <em>✦</em>&nbsp;
+  </span>
+</div>
+
 <header>
-  <h1>📁 Julia's ILTC Apps <span class="spark">✦</span></h1>
-  <p>Click a folder to open the live app · <code>&lt;/&gt;</code> for the code</p>
+  <span class="doodle" style="left:6%; top:30%; --r:-14deg;">🛹</span>
+  <span class="doodle" style="right:8%; top:22%; --r:10deg; animation-delay:.6s;">⚡️</span>
+  <span class="doodle" style="left:16%; top:75%; --r:6deg; animation-delay:1.2s;">✰</span>
+  <span class="doodle" style="right:18%; top:78%; --r:-9deg; animation-delay:1.8s;">☻</span>
+  <h1>Julia's <span class="tilt">ILTC</span> Apps</h1>
+  <div class="subtitle">click a sticker → live app · <code>&lt;/&gt;</code> → the code 💅</div>
 </header>
 
 <main class="grid">
@@ -180,11 +299,17 @@
 </main>
 
 <footer>
-  Made at ILTC · <a href="https://github.com/cinnamonjulia" target="_blank" rel="noopener">github.com/cinnamonjulia</a>
+  <div style="height:40px"></div>
+  <div class="checker" aria-hidden="true"></div>
+  <div class="footer-inner">
+    <span class="board">🛹</span>
+    made at ILTC · powered by vibes ·
+    <a href="https://github.com/cinnamonjulia" target="_blank" rel="noopener">github.com/cinnamonjulia</a>
+  </div>
 </footer>
 
 <script>
-  // Add a </> code link to each folder card pointing at its GitHub repo
+  // Add a </> code link to each sticker pointing at its GitHub repo
   document.querySelectorAll(".folder").forEach((card) => {
     const repo = new URL(card.href).pathname.replaceAll("/", "");
     const code = document.createElement("a");
