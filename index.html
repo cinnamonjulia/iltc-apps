@@ -300,7 +300,7 @@
   <a class="folder" href="https://cinnamonjulia.github.io/go-for-wellness/" target="_blank" rel="noopener">
     <span class="icon">🩺</span>
     <span class="name">Go for Wellness</span>
-    <span class="desc">Cough drop or hospital? Symptom triage for ILTC teens</span>
+    <span class="desc">Cough drop or hospital? Symptom triage for ILTC teens. Not real medical advice — do not take this seriously.</span>
     <span class="open">Open app →</span>
   </a>
 
@@ -317,6 +317,13 @@
     <span class="desc">Madrichim anime avatars counting how much they miss their campers</span>
     <span class="open">Open app →</span>
   </a>
+
+  <a class="folder" href="https://testflight.apple.com/join/41PGKdpa" target="_blank" rel="noopener" data-badge="📲 beta">
+    <span class="icon">⏳</span>
+    <span class="name">future you</span>
+    <span class="desc">iOS app — join the beta on TestFlight</span>
+    <span class="open">Join beta →</span>
+  </a>
 </main>
 
 <footer>
@@ -330,18 +337,24 @@
 </footer>
 
 <script>
-  // Add a </> code link to each sticker pointing at its GitHub repo
+  // Add a corner badge to each sticker: </> to the GitHub repo for
+  // github.io apps, or a custom badge (e.g. TestFlight beta) via data-badge
   document.querySelectorAll(".folder").forEach((card) => {
-    const repo = new URL(card.href).pathname.replaceAll("/", "");
-    const code = document.createElement("a");
-    code.className = "code-link";
-    code.href = "https://github.com/cinnamonjulia/" + repo;
-    code.target = "_blank";
-    code.rel = "noopener";
-    code.textContent = "</>";
-    code.title = "View code on GitHub";
-    code.addEventListener("click", (e) => e.stopPropagation());
-    card.appendChild(code);
+    const url = new URL(card.href);
+    const badge = document.createElement(card.dataset.badge ? "span" : "a");
+    badge.className = "code-link";
+    if (card.dataset.badge) {
+      badge.textContent = card.dataset.badge;
+    } else {
+      const repo = url.pathname.replaceAll("/", "");
+      badge.href = "https://github.com/cinnamonjulia/" + repo;
+      badge.target = "_blank";
+      badge.rel = "noopener";
+      badge.textContent = "</>";
+      badge.title = "View code on GitHub";
+      badge.addEventListener("click", (e) => e.stopPropagation());
+    }
+    card.appendChild(badge);
   });
 </script>
 </body>
