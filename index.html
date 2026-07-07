@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Julia's ILTC Apps</title>
+<meta name="description" content="Every app Julia made at ILTC — click a folder to open the live app." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📁</text></svg>" />
+<style>
+  :root {
+    --bg1: #1b2340;
+    --bg2: #3a2a5e;
+    --card: rgba(255, 255, 255, 0.07);
+    --card-hover: rgba(255, 255, 255, 0.14);
+    --text: #f4f2ff;
+    --muted: #b9b3d9;
+    --accent: #ffd166;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(160deg, var(--bg1), var(--bg2));
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 20px 64px;
+  }
+  header { text-align: center; margin-bottom: 40px; }
+  header h1 {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+  header h1 .spark { color: var(--accent); }
+  header p {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    width: 100%;
+    max-width: 1020px;
+  }
+  .folder {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 26px 18px 20px;
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  }
+  .folder:hover {
+    transform: translateY(-4px);
+    background: var(--card-hover);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  }
+  .folder .icon {
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: transform 0.18s ease;
+  }
+  .folder:hover .icon { transform: scale(1.12) rotate(-3deg); }
+  .folder .name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .folder .desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    min-height: 2.4em;
+  }
+  .folder .open {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .code-link {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 4px 8px;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .code-link:hover { color: var(--accent); background: rgba(0, 0, 0, 0.45); }
+  footer {
+    margin-top: 48px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📁 Julia's ILTC Apps <span class="spark">✦</span></h1>
+  <p>Click a folder to open the live app · <code>&lt;/&gt;</code> for the code</p>
+</header>
+
+<main class="grid">
+  <a class="folder" href="https://cinnamonjulia.github.io/clash/" target="_blank" rel="noopener">
+    <span class="icon">🗓️</span>
+    <span class="name">Clash</span>
+    <span class="desc">BBYO school-date conflict checker — 366 districts, 37 regions, best-weekend rankings</span>
+    <span class="open">Open app →</span>
+  </a>
+
+  <a class="folder" href="https://cinnamonjulia.github.io/strengths-quiz/" target="_blank" rel="noopener">
+    <span class="icon">💪</span>
+    <span class="name">Strengths Finder</span>
+    <span class="desc">Interactive strengths quiz — find your top 5</span>
+    <span class="open">Open app →</span>
+  </a>
+
+  <a class="folder" href="https://cinnamonjulia.github.io/bens-kitchen-rage/" target="_blank" rel="noopener">
+    <span class="icon">🍳</span>
+    <span class="name">Ben's Kitchen Rage</span>
+    <span class="desc">Rage-venting kitchen smash simulator. Nothing alive gets hurt.</span>
+    <span class="open">Open app →</span>
+  </a>
+
+  <a class="folder" href="https://cinnamonjulia.github.io/julia-senise-bullet-journal/" target="_blank" rel="noopener">
+    <span class="icon">📓</span>
+    <span class="name">Julia Senise Bullet Journal</span>
+    <span class="desc">A little digital book — habit grids, doodles, one sentence a day</span>
+    <span class="open">Open app →</span>
+  </a>
+
+  <a class="folder" href="https://cinnamonjulia.github.io/mercrowave/" target="_blank" rel="noopener">
+    <span class="icon">🔮</span>
+    <span class="name">Mercrowave</span>
+    <span class="desc">Astrology of the day — at ILTC and beyond</span>
+    <span class="open">Open app →</span>
+  </a>
+
+  <a class="folder" href="https://cinnamonjulia.github.io/tomale-magic-kingdom/" target="_blank" rel="noopener">
+    <span class="icon">🐶</span>
+    <span class="name">Hot Tomale</span>
+    <span class="desc">Fara's dog's Tamagotchi — feed, play, and keep Tomale happy</span>
+    <span class="open">Open app →</span>
+  </a>
+
+  <a class="folder" href="https://cinnamonjulia.github.io/the-run-to-saratoga/" target="_blank" rel="noopener">
+    <span class="icon">🌙</span>
+    <span class="name">The Run to Saratoga</span>
+    <span class="desc">Oregon Trail-style siren river adventure — beat the frost to Saratoga, NY</span>
+    <span class="open">Open app →</span>
+  </a>
+
+  <a class="folder" href="https://cinnamonjulia.github.io/the-daily-plantain/" target="_blank" rel="noopener">
+    <span class="icon">🍌</span>
+    <span class="name">The Daily Plantain</span>
+    <span class="desc">Satirical news for Barry Pechet</span>
+    <span class="open">Open app →</span>
+  </a>
+</main>
+
+<footer>
+  Made at ILTC · <a href="https://github.com/cinnamonjulia" target="_blank" rel="noopener">github.com/cinnamonjulia</a>
+</footer>
+
+<script>
+  // Add a </> code link to each folder card pointing at its GitHub repo
+  document.querySelectorAll(".folder").forEach((card) => {
+    const repo = new URL(card.href).pathname.replaceAll("/", "");
+    const code = document.createElement("a");
+    code.className = "code-link";
+    code.href = "https://github.com/cinnamonjulia/" + repo;
+    code.target = "_blank";
+    code.rel = "noopener";
+    code.textContent = "</>";
+    code.title = "View code on GitHub";
+    code.addEventListener("click", (e) => e.stopPropagation());
+    card.appendChild(code);
+  });
+</script>
+</body>
+</html>
